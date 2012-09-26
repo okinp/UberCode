@@ -69,6 +69,9 @@
     <CustomBuild Include="..\..\src\UCTreeWidgetBlockProperties.h">
       <Filter>Header\Window/Widget</Filter>
     </CustomBuild>
+    <CustomBuild Include="..\..\src\UCNode.h">
+      <Filter>Header\Blocks/Nodes/Links</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\docs\todo.txt">
@@ -151,6 +154,18 @@
     <ClCompile Include="GeneratedFiles\Release\moc_UCTreeWidgetBlockProperties.cpp">
       <Filter>Generated Data\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UCNode.cpp">
+      <Filter>Generated Data\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UCNode.cpp">
+      <Filter>Generated Data\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCNodeInlet.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCNodeOutlet.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\UCManagerSettings.h">
@@ -165,10 +180,16 @@
     <ClInclude Include="GeneratedFiles\ui_SettingsPathBundles.h">
       <Filter>Generated Data</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\UCNode.h">
+    <ClInclude Include="..\..\src\UCBlockModel.h">
       <Filter>Header\Blocks/Nodes/Links</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\UCBlockModel.h">
+    <ClInclude Include="..\..\src\UCNodeInfo.h">
+      <Filter>Header\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\UCNodeInlet.h">
+      <Filter>Header\Blocks/Nodes/Links</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\UCNodeOutlet.h">
       <Filter>Header\Blocks/Nodes/Links</Filter>
     </ClInclude>
   </ItemGroup>

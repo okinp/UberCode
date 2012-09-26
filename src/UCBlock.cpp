@@ -2,6 +2,8 @@
 #include <QPointF>
 #include <QGraphicsView>
 #include "UCTreeWidgetBlockProperties.h"
+#include "UCNodeInlet.h"
+#include "UCNodeOutlet.h"
 
 
 
@@ -10,8 +12,11 @@ using namespace Uber;
 
 Uber::UCBlock::UCBlock( const QString& bundleName, const QString& blockName )
 	: QGraphicsObject( nullptr ),
-	  m_Model( bundleName, blockName )
+	  m_Model( bundleName, blockName ),
+	  m_Inlets( m_Model.GetCountInlets() ),
+	  m_Outlets( m_Model.GetCountOutlets() )
 {
+	 this->setToolTip( bundleName + "->" + blockName );
 	// select/drag-able
 	setFlag( QGraphicsItem::ItemIsMovable );
 	setFlag( QGraphicsItem::ItemIsSelectable );
@@ -21,6 +26,21 @@ Uber::UCBlock::UCBlock( const QString& bundleName, const QString& blockName )
 			 &UCTreeWidgetBlockProperties::GetInstance(), SLOT( OnBlockSelected( UCBlockModel* ) ) );
 
 	emit NotifyBlockSelected( &m_Model );
+
+	// create nodes for each inlet/outlet
+	unsigned int size = m_Model.GetCountInlets();
+	for( int i = 0; i < size; ++i )
+	{
+		m_Inlets[i] = new UCNodeInlet( this, m_Model.GetInfoInlet( i ) );
+		m_Inlets[i]->setPos( 20 + i * 20, 10 );
+	}
+
+	size = m_Model.GetCountOutlets();
+	for( int i = 0; i < size; ++i )
+	{
+		m_Outlets[i] = new UCNodeOutlet( this, m_Model.GetInfoOutlet( i ) );
+		m_Outlets[i]->setPos( 130 - i * 20, 80 );
+	}
 }
 
 UCBlock::~UCBlock(void)
@@ -30,7 +50,7 @@ UCBlock::~UCBlock(void)
 
 QRectF Uber::UCBlock::boundingRect() const
 {
-	return QRectF( -150, -100, 150, 100 );
+	return QRectF( 0, 0, 150, 100 );
 }
 
 void Uber::UCBlock::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget /*= 0 */ )
@@ -39,7 +59,7 @@ void Uber::UCBlock::paint( QPainter *painter, const QStyleOptionGraphicsItem *op
 	Q_UNUSED(widget)
 
 	QPainterPath path;
-	path.addRoundedRect( -150, -100, 150, 100, 5, 5 );
+	path.addRoundedRect( 0, 0, 150, 100, 5, 5 );
 
 	QPen pen;
 	pen.setWidthF(1.f);
@@ -58,4 +78,14 @@ void Uber::UCBlock::mousePressEvent( QGraphicsSceneMouseEvent *event )
 {
 	emit NotifyBlockSelected( &m_Model );
 	QGraphicsObject::mousePressEvent( event );
+}
+
+NodeContainer& Uber::UCBlock::GetNodesInlet() const
+{
+	return const_cast<NodeContainer&>( m_Inlets );
+}
+
+NodeContainer& Uber::UCBlock::GetNodesOutlet() const
+{
+	return const_cast<NodeContainer&>( m_Outlets );
 }

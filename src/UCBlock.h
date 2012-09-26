@@ -2,9 +2,11 @@
 #include<QGraphicsObject>
 #include "UCBlockModel.h"
 
-
 namespace Uber
 {
+class UCNode;
+
+typedef std::vector<UCNode*>	NodeContainer;
 
 /*!
 * The graphical representation of a block in the scene, holds all information
@@ -22,6 +24,8 @@ public:
 	virtual void					paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0 );
 
 	UCBlockModel*					GetModel();
+	NodeContainer&					GetNodesInlet() const;
+	NodeContainer&					GetNodesOutlet() const;
 
 signals:
 	void							NotifyBlockSelected( UCBlockModel* model );
@@ -31,6 +35,8 @@ protected:
 
 private:
 	UCBlockModel					m_Model;
+	NodeContainer					m_Inlets;
+	NodeContainer					m_Outlets;
 };
 
 }

@@ -1,7 +1,9 @@
 #pragma once
 #include <QAbstractListModel>
 #include <_2RealApplication.h>
-#include <_2RealApplication.h>
+#include "UCNodeInfo.h"
+
+
 
 
 namespace Uber
@@ -43,19 +45,22 @@ public:
 	UCBlockModel( const QString& bundleName, const QString& blockName );
 	virtual ~UCBlockModel(void);
 
-	virtual QModelIndex				index( int row, int column, const QModelIndex &parent = QModelIndex( ) ) const;
-	virtual int						rowCount( const QModelIndex &parent = QModelIndex( ) ) const;
-	virtual int						columnCount( const QModelIndex &parent = QModelIndex( ) ) const;
-	virtual QVariant				data( const QModelIndex &index, int role = Qt::DisplayRole ) const;
-	/*virtual bool					setData( const QModelIndex &index, const QVariant &value, int role = Qt::EditRole );*/
-	virtual QVariant				headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
-	virtual Qt::ItemFlags			flags( const QModelIndex &index ) const;
+	virtual QModelIndex					index( int row, int column, const QModelIndex &parent = QModelIndex( ) ) const;
+	virtual int							rowCount( const QModelIndex &parent = QModelIndex( ) ) const;
+	virtual int							columnCount( const QModelIndex &parent = QModelIndex( ) ) const;
+	virtual QVariant					data( const QModelIndex &index, int role = Qt::DisplayRole ) const;
+	/*virtual bool						setData( const QModelIndex &index, const QVariant &value, int role = Qt::EditRole );*/
+	virtual QVariant					headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
+	virtual Qt::ItemFlags				flags( const QModelIndex &index ) const;
 
-	const QString&					GetBundleName() const;
-	const QString&					GetBlockName() const;
-	_2Real::app::BundleHandle*		GetBundleHandle();
-	_2Real::app::BlockHandle*		GetBlockHandle();
-
+	const QString&						GetBundleName() const;
+	const QString&						GetBlockName() const;
+	_2Real::app::BundleHandle*			GetBundleHandle();
+	_2Real::app::BlockHandle*			GetBlockHandle();
+	const unsigned int					GetCountInlets() const;
+	const unsigned int					GetCountOutlets() const;
+	UCInletInfo							GetInfoInlet( const unsigned int index ) const;
+	UCOutletInfo						GetInfoOutlet( const unsigned int index ) const;
 
 private:
 
@@ -78,6 +83,7 @@ private:
 	const unsigned int							m_CountInlets, m_CountOutlets; 		/*!< Quantity of inlets/outlets found in a block */
 	ModelDataList								m_Data; 			/*!< Storing UCModelData-Objects for each inlet/outlet */
 };
+
 
 
 }
