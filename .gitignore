@@ -1,5 +1,64 @@
-/build/vc10/*.sdf
-/build/vc10/UberCode.vcxproj.user
-/build/vc10/ipch
-/build/vc10/Debug
-/build/vc10/UberCode_v2.opensdf
+#Ubercode Specific
+/build/vc10/EngineLog.txt
+/build/vc10/data/
+
+
+#SVN Files
+.svn
+
+#OS Junk
+[Tt]humbs.db
+.DS_Store
+
+#XCode Files
+*.swp
+*~.nib
+*/DerivedData/
+
+
+#Visual Studio files
+*.[Oo]bj
+*.exe
+*.pdb
+*.user
+*.vcxproj.user
+*.aps
+*.pch
+
+
+
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.exp
+*.dll
+*.sbr
+*.sdf
+ipch/
+obj/
+
+# Visual C++ cache files
+ipch/
+*.aps
+*.opensdf
+*.sdf
+
+# Visual Studio profiler
+*.psess
+*.vsp
+
+Ankh.NoLoad
+
+#Common Files
+[Dd]ebug*/
+[Rr]elease*/
