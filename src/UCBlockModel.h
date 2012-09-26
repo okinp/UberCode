@@ -1,8 +1,6 @@
 #pragma once
 #include <QAbstractListModel>
 #include <_2RealApplication.h>
-#include <_2RealApplication.h>
-
 
 namespace Uber
 {

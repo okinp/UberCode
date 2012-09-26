@@ -3,7 +3,6 @@
 #include <QMouseEvent>
 #include <QApplication>
 
-
 using namespace Uber;
 
 UCTreeWidgetBundles::UCTreeWidgetBundles( QWidget* parent )
@@ -19,7 +18,7 @@ UCTreeWidgetBundles::UCTreeWidgetBundles( QWidget* parent )
 
 	// dataflowmanager unloaded bundles
 	connect( &UCManagerBundles::GetInstance(),
-		SIGNAL( NotifyBundlyUnloaded( const QString&, const BlockInfoList& )),
+		SIGNAL( NotifyBundleUnloaded( const QString&, const BlockInfoList& )),
 		this, SLOT(OnBundleUnloaded( const QString&, const BlockInfoList& )) );
 }
 
