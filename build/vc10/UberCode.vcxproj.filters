@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="docs">
+      <UniqueIdentifier>{9c1ed73a-fe66-4b0f-8798-a45ff589a184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{0418cf34-c924-475f-a6a3-650fe2d32479}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{bc77923c-5bb5-461a-8db5-b1bce9075f44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Window/Widget">
+      <UniqueIdentifier>{f18c4289-cb9a-40ca-ae8e-0999013f8113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Data">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Data\Debug">
+      <UniqueIdentifier>{faf21e92-acc3-4d27-ad97-ac87fe7594f8}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Data\Release">
+      <UniqueIdentifier>{81613040-8657-4b02-9729-1b5bcbc18451}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="User Interface">
+      <UniqueIdentifier>{64f3a303-78d9-4fc9-9b89-b67cd73d47ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Utils">
+      <UniqueIdentifier>{c8ba1976-8c9a-473f-addf-16358e77cadf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Manager">
+      <UniqueIdentifier>{4dcdc68c-2200-4a89-8cff-09a814b75d24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Blocks/Nodes/Links">
+      <UniqueIdentifier>{6df027df-5071-48e3-9788-70b5904e1b4e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\src\UCWindowMain.h">
+      <Filter>Header\Window/Widget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\UCDialogPathBundles.h">
+      <Filter>Header\Window/Widget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\QTUI\MainWindow.ui">
+      <Filter>User Interface</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\QTUI\SettingsPathBundles.ui">
+      <Filter>User Interface</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\UCTreeWidgetBundles.h">
+      <Filter>Header\Window/Widget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\UCSceneView.h">
+      <Filter>Header\Window/Widget</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\UCManagerBundles.h">
+      <Filter>Header\Manager</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\UCBlock.h">
+      <Filter>Header\Blocks/Nodes/Links</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\src\UCTreeWidgetBlockProperties.h">
+      <Filter>Header\Window/Widget</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\docs\todo.txt">
+      <Filter>docs</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UCWindowMain.cpp">
+      <Filter>Generated Data\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UCWindowMain.cpp">
+      <Filter>Generated Data\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCWindowMain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UCDialogPathBundles.cpp">
+      <Filter>Generated Data\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UCDialogPathBundles.cpp">
+      <Filter>Generated Data\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCDialogPathBundles.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCManagerSettings.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UCTreeWidgetBundles.cpp">
+      <Filter>Generated Data\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UCTreeWidgetBundles.cpp">
+      <Filter>Generated Data\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCTreeWidgetBundles.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UCSceneView.cpp">
+      <Filter>Generated Data\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UCSceneView.cpp">
+      <Filter>Generated Data\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCSceneView.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UCManagerBundles.cpp">
+      <Filter>Generated Data\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UCManagerBundles.cpp">
+      <Filter>Generated Data\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCManagerBundles.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCNode.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCBlockModel.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCBlock.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\UCTreeWidgetBlockProperties.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UCBlock.cpp">
+      <Filter>Generated Data\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UCBlock.cpp">
+      <Filter>Generated Data\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_UCTreeWidgetBlockProperties.cpp">
+      <Filter>Generated Data\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_UCTreeWidgetBlockProperties.cpp">
+      <Filter>Generated Data\Release</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\UCManagerSettings.h">
+      <Filter>Header\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\UCSingleton.h">
+      <Filter>Header\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_MainWindow.h">
+      <Filter>Generated Data</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_SettingsPathBundles.h">
+      <Filter>Generated Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\UCNode.h">
+      <Filter>Header\Blocks/Nodes/Links</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\UCBlockModel.h">
+      <Filter>Header\Blocks/Nodes/Links</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
