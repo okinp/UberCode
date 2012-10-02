@@ -169,19 +169,19 @@ const QString Uber::UCModelDataPrimitiveInlet<T>::Type() const
 template<>
 inline void Uber::UCModelDataPrimitiveInlet<int>::SetData( QString& str )
 {
-	m_Handle.setValue( QVariant( str ).toInt() );
+	m_Handle.setValue<int>( QVariant( str ).toInt() );
 }
 
 template<>
 inline void Uber::UCModelDataPrimitiveInlet<float>::SetData( QString& str )
 {
-	m_Handle.setValue( QVariant( str ).toFloat() );
+	m_Handle.setValue<float>( QVariant( str ).toFloat() );
 }
 
 template<>
 inline void Uber::UCModelDataPrimitiveInlet<QString>::SetData( QString& str )
 {
-	m_Handle.setValue( QVariant( str ).toString().toStdString() );
+	m_Handle.setValue<std::string>( QVariant( str ).toString().toStdString() );
 }
 
 template<>
