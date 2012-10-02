@@ -1,26 +1,29 @@
 #pragma once
 #include<QGraphicsObject>
-#include "UCNodeInfo.h"
+#include <QSharedPointer>
+#include "UCModelData.h"
+
 
 
 namespace Uber
 {
-class UCNodeInfo;
+
 class UCNode : public QGraphicsObject
 {
 	Q_OBJECT
 public:
-	UCNode( QGraphicsObject* parent, const UCNodeInfo& info );
+	UCNode( QGraphicsObject* parent, const UCModelData_sptr data );
 	virtual ~UCNode(void);
 
-	virtual QRectF boundingRect() const;
+	virtual QRectF					boundingRect() const;
 
-	virtual void paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0 );
 
+protected:
+	const UCModelData_sptr			GetModelData() const;
 
 private:
-
-	const UCNodeInfo						m_Info;
+	const UCModelData_sptr			m_Data;
 };
 
+typedef QSharedPointer<UCNode> UCNode_sptr;
 }

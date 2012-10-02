@@ -1,12 +1,13 @@
 #pragma once
 #include<QGraphicsObject>
 #include "UCBlockModel.h"
+#include "UCNode.h"
+
 
 namespace Uber
 {
-class UCNode;
 
-typedef std::vector<UCNode*>	NodeContainer;
+typedef std::vector<UCNode_sptr>	NodeContainer;
 
 /*!
 * The graphical representation of a block in the scene, holds all information

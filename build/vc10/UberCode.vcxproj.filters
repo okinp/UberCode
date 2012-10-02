@@ -40,6 +40,9 @@
     <Filter Include="Header\Blocks/Nodes/Links">
       <UniqueIdentifier>{6df027df-5071-48e3-9788-70b5904e1b4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header\Model">
+      <UniqueIdentifier>{dddcc209-517e-449e-be29-bcbc3ff20baa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\src\UCWindowMain.h">
@@ -180,17 +183,17 @@
     <ClInclude Include="GeneratedFiles\ui_SettingsPathBundles.h">
       <Filter>Generated Data</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\UCBlockModel.h">
-      <Filter>Header\Blocks/Nodes/Links</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\UCNodeInfo.h">
-      <Filter>Header\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\UCNodeInlet.h">
       <Filter>Header\Blocks/Nodes/Links</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\UCNodeOutlet.h">
       <Filter>Header\Blocks/Nodes/Links</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\UCModelData.h">
+      <Filter>Header\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\UCBlockModel.h">
+      <Filter>Header\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

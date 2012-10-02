@@ -4,12 +4,10 @@
 #include "UCWindowMain.h"
 #include <QTreeView>
 
-
 using namespace Uber;
 using namespace _2Real::app;
 
-const QString UCBlockModel::STR_INLET = QString( "Inlet" );
-const QString UCBlockModel::STR_OUTLET = QString( "Outlet" );
+
 
 Uber::UCBlockModel::UCBlockModel( const QString& bundleName, const QString& blockName )
 	: QAbstractListModel( nullptr ),
@@ -25,26 +23,15 @@ Uber::UCBlockModel::UCBlockModel( const QString& bundleName, const QString& bloc
 	const unsigned int size = m_Data.size();
 	const BlockHandle::InletHandles& inlets = m_HandleBlock->getAllInletHandles();
 	const BlockHandle::OutletHandles& outlets = m_HandleBlock->getAllOutletHandles();
-	UCModelData data;
 
 	// filling data to member
 	// inlets before outlets
 	for( int i = 0; i < size; ++i )
 	{
 		if( i < m_CountInlets ) // insert inlets
-		{
-			const InletHandle& inlet = inlets[i];		
-			data.name = QString::fromStdString( inlet.getName() );
-			data.type = STR_INLET;
-		}
+			m_Data[i] = UCModelData::CreateModelData( inlets[i] );
 		else // insert outlets
-		{
-			const OutletHandle& outlet = outlets[i-m_CountInlets];
-			data.name = QString::fromStdString( outlet.getName() );
-			data.type = STR_OUTLET;
-		}
-		data.data = QString( "N/A" );
-		m_Data[i] = data;
+			m_Data[i] = UCModelData::CreateModelData( outlets[i-m_CountInlets] );
 	}
   
 	m_HandleBlock->start();
@@ -88,19 +75,7 @@ QModelIndex Uber::UCBlockModel::index( int row, int column, const QModelIndex &p
 	if ( parent.isValid() && parent.column() != 0 )
 		return QModelIndex();
 
-	const UCModelData* item = &m_Data[row];
-
-	switch( column )
-	{	
-	case ROWID_NAME:
-		return createIndex( row, column, (void*)&item->name );
-	case ROWID_TYPE:
-		return createIndex( row, column, (void*)&item->type );
-	case ROWID_DATA:
-		return createIndex( row, column, (void*)&item->data );
-	default:
-		return QModelIndex();
-	}
+	return createIndex( row, column, (void*)m_Data[row].data() );
 }
 
 int Uber::UCBlockModel::rowCount( const QModelIndex &parent /*= QModelIndex( ) */ ) const
@@ -110,8 +85,7 @@ int Uber::UCBlockModel::rowCount( const QModelIndex &parent /*= QModelIndex( ) *
 
 int Uber::UCBlockModel::columnCount( const QModelIndex &parent /*= QModelIndex( ) */ ) const
 {
-	// row for every member in UCModelDataRowID-struct
-	return unsigned int( sizeof( UCModelData ) / sizeof( QString ) );
+	return 3;
 }
 
 QVariant Uber::UCBlockModel::data( const QModelIndex &index, int role /*= Qt::DisplayRole */ ) const
@@ -128,30 +102,28 @@ QVariant Uber::UCBlockModel::data( const QModelIndex &index, int role /*= Qt::Di
 	switch( index.column() )
 	{	
 		case ROWID_NAME:
-			return m_Data[index.row()].name;
+			{
+
+			QString bla = m_Data[index.row()]->Name();
+			return bla;
+			}
 		case ROWID_TYPE:
-			return m_Data[index.row()].type;
+			return m_Data[index.row()]->Type();
 		case ROWID_DATA:
-			return m_Data[index.row()].data;
+			return m_Data[index.row()]->Data();
 		default:
 			return QVariant();
 	}
 }
-//
-//bool Uber::UCBlockModel::setData( const QModelIndex &index, const QVariant &value, int role /*= Qt::EditRole */ )
-//{
-//	/*if (role != Qt::EditRole)
-//		return false;
-//
-//	TreeItem *item = getItem(index);
-//	bool result = item->setData(index.column(), value);
-//
-//	if (result)
-//		emit dataChanged(index, index);
-//
-//	return result;*/
-//	return QAbstractListModel::setData( index, value, role );
-//}
+
+bool Uber::UCBlockModel::setData( const QModelIndex &index, const QVariant &value, int role /*= Qt::EditRole */ )
+{
+	if( role != Qt::EditRole )
+		return false;
+	m_Data[index.row()]->SetData( value.toString() );
+	emit QAbstractListModel::dataChanged( index, index );
+	return false;
+}
 
 QVariant Uber::UCBlockModel::headerData( int section, Qt::Orientation orientation, int role /*= Qt::DisplayRole */ ) const
 {
@@ -211,16 +183,8 @@ const unsigned int Uber::UCBlockModel::GetCountOutlets() const
 	return m_CountOutlets;
 }
 
-UCInletInfo Uber::UCBlockModel::GetInfoInlet( const unsigned int index ) const
+UCModelData_sptr Uber::UCBlockModel::GetModelDataAt( const unsigned int index ) const
 {
-	if( index >= m_CountInlets ) throw( std::exception( "GetInlet: Unknown index") );
-	const UCModelData& data = m_Data[index];
-	return UCInletInfo( data.name, data.type, data.data, index, m_HandleBlock->getInletHandle( data.name.toStdString() ) );
-}
-
-UCOutletInfo Uber::UCBlockModel::GetInfoOutlet( const unsigned int index ) const
-{
-	if( index >= m_CountOutlets ) throw( std::exception( "GetOutlet: Unknown index") );
-	const UCModelData& data = m_Data[index + m_CountInlets];
-	return UCOutletInfo( data.name, data.type, data.data, index, m_HandleBlock->getOutletHandle( data.name.toStdString() ) );
+	if( index >= m_Data.size() ) throw( std::exception( "GetOutlet: Unknown index") );
+	return m_Data[index];
 }

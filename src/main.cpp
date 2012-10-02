@@ -6,6 +6,7 @@
 #include <iostream>
 
 
+
 int main(int argc, char *argv[])
 {
 	// creating windows and application

@@ -1,16 +1,14 @@
 #include "UCNode.h"
-#include <QPen>
-#include <QPainter>
 
 
 using namespace Uber;
 
 
-UCNode::UCNode( QGraphicsObject* parent, const UCNodeInfo& info )
+UCNode::UCNode( QGraphicsObject* parent, const UCModelData_sptr data )
 	: QGraphicsObject( parent ),
-	  m_Info( info )
+	  m_Data( data )
 {
-	this->setToolTip( info.name );
+	this->setToolTip( m_Data->Name() );
 
 }
 
@@ -25,15 +23,7 @@ QRectF Uber::UCNode::boundingRect() const
 	return QRectF( -5, -5, 20, 20 );
 }
 
-void Uber::UCNode::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget /*= 0 */ )
+const UCModelData_sptr Uber::UCNode::GetModelData() const
 {
-	QPen pen;
-	pen.setWidthF( 5.0f );
-	pen.setBrush( Qt::yellow );	
-	painter->setPen( pen );
-	painter->drawEllipse( 0,0, 10, 10 );
-	pen.setWidthF( 1.5f );
-	pen.setBrush( Qt::black );	
-	painter->setPen( pen );
-	painter->drawEllipse( -2,-2, 14, 14 );
+	return m_Data;
 }

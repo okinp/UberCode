@@ -1,8 +1,7 @@
 #pragma once
 #include <QAbstractListModel>
 #include <_2RealApplication.h>
-#include "UCNodeInfo.h"
-
+#include "UCModelData.h"
 
 
 
@@ -15,16 +14,6 @@ namespace Uber
 */
 class UCBlockModel : public QAbstractListModel
 {	
-	/*!
-	* Structure to store data for inlets/outlets
-	* Note: only use QString members!!!!
-	*/
-	struct UCModelData
-	{
-		QString				name;		/*!< name of the inlet/outlet */
-		QString				type;		/*!< wheter "Inlet" / "Outlet" depending on type */
-		QString				data;		/*!< Data of the inlet/outlet represented by a string */
-	};
 
 	/*!
 	* Enum-representation of a column in this model
@@ -36,12 +25,8 @@ class UCBlockModel : public QAbstractListModel
 		ROWID_DATA
 	};
 
-	typedef std::vector<UCModelData> ModelDataList; 		/*!< Datastructure to store inlet/outlet information to display in a view */
-
+	typedef std::vector<UCModelData_sptr> ModelDataList; 		/*!< Datastructure to store inlet/outlet information to display in a view */
 public:
-	static const QString			STR_INLET;
-	static const QString			STR_OUTLET;
-
 	UCBlockModel( const QString& bundleName, const QString& blockName );
 	virtual ~UCBlockModel(void);
 
@@ -49,7 +34,7 @@ public:
 	virtual int							rowCount( const QModelIndex &parent = QModelIndex( ) ) const;
 	virtual int							columnCount( const QModelIndex &parent = QModelIndex( ) ) const;
 	virtual QVariant					data( const QModelIndex &index, int role = Qt::DisplayRole ) const;
-	/*virtual bool						setData( const QModelIndex &index, const QVariant &value, int role = Qt::EditRole );*/
+	virtual bool						setData( const QModelIndex &index, const QVariant &value, int role = Qt::EditRole );
 	virtual QVariant					headerData( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
 	virtual Qt::ItemFlags				flags( const QModelIndex &index ) const;
 
@@ -59,8 +44,7 @@ public:
 	_2Real::app::BlockHandle*			GetBlockHandle();
 	const unsigned int					GetCountInlets() const;
 	const unsigned int					GetCountOutlets() const;
-	UCInletInfo							GetInfoInlet( const unsigned int index ) const;
-	UCOutletInfo						GetInfoOutlet( const unsigned int index ) const;
+	UCModelData_sptr					GetModelDataAt( const unsigned int index ) const;
 
 private:
 

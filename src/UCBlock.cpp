@@ -6,7 +6,6 @@
 #include "UCNodeOutlet.h"
 
 
-
 using namespace Uber;
 
 
@@ -31,14 +30,14 @@ Uber::UCBlock::UCBlock( const QString& bundleName, const QString& blockName )
 	unsigned int size = m_Model.GetCountInlets();
 	for( int i = 0; i < size; ++i )
 	{
-		m_Inlets[i] = new UCNodeInlet( this, m_Model.GetInfoInlet( i ) );
+		m_Inlets[i] = QSharedPointer<UCNode>( new UCNodeInlet( this, m_Model.GetModelDataAt( i ) ) );
 		m_Inlets[i]->setPos( 20 + i * 20, 10 );
 	}
 
 	size = m_Model.GetCountOutlets();
 	for( int i = 0; i < size; ++i )
 	{
-		m_Outlets[i] = new UCNodeOutlet( this, m_Model.GetInfoOutlet( i ) );
+		m_Outlets[i] = QSharedPointer<UCNode>( new UCNodeOutlet( this, m_Model.GetModelDataAt( i ) ) );
 		m_Outlets[i]->setPos( 130 - i * 20, 80 );
 	}
 }
@@ -55,8 +54,8 @@ QRectF Uber::UCBlock::boundingRect() const
 
 void Uber::UCBlock::paint( QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget /*= 0 */ )
 {
-	Q_UNUSED(option)
-	Q_UNUSED(widget)
+	Q_UNUSED( option )
+	Q_UNUSED( widget )
 
 	QPainterPath path;
 	path.addRoundedRect( 0, 0, 150, 100, 5, 5 );
