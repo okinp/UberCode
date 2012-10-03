@@ -12,15 +12,17 @@ UCTreeWidgetBundles::UCTreeWidgetBundles( QWidget* parent )
 	setColumnCount( 1 );
 	setHeaderItem( new QTreeWidgetItem( (QTreeWidget*) nullptr, QStringList( QString( "_2RealBundles" ) ) ) );
 
-	// dataflowmanager inserted bundles
+	// bundlemanager inserted bundles
 	connect( &UCManagerBundles::GetInstance(),
 			 SIGNAL( NotifyBundleDetected( const QString&, const BlockInfoList& )),
 			 this, SLOT(OnBundleDetected( const QString&, const BlockInfoList& )) );
 
-	// dataflowmanager unloaded bundles
+	// bundlemanager unloaded bundles
 	connect( &UCManagerBundles::GetInstance(),
 		SIGNAL( NotifyBundlyUnloaded( const QString&, const BlockInfoList& )),
 		this, SLOT(OnBundleUnloaded( const QString&, const BlockInfoList& )) );
+
+	setWindowTitle( QString( "kasfklsjf" ) );
 }
 
 

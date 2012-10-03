@@ -4,7 +4,7 @@
 #include "UCSceneView.h"
 #include "UCTreeWidgetBundles.h"
 #include "UCBlock.h"
-
+#include <QtAlgorithms>
 
 
 
@@ -18,7 +18,7 @@ void Uber::UCSceneView::Initialize()
 
 void Uber::UCSceneView::Uninitialize()
 {
-
+	qDeleteAll( items() );
 }
 
 QGraphicsView* Uber::UCSceneView::GetRootGraphicsView() const

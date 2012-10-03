@@ -16,14 +16,16 @@ class UCManagerSettings : public UCSingleton<UCManagerSettings>
 	UCSINGLETON( UCManagerSettings );
 
 	typedef QSharedPointer<QSettings> QSettings_sp;
+
+	virtual void				Initialize();
+	virtual void				Uninitialize();
+
 public:
 	// Identification-Values
 	const static QString		PATH_SETTINGS;
 	const static QString		ID_DIRECTORIES_BUNDLE;
 
 
-	virtual void				Initialize();
-	virtual void				Uninitialize();
 
 	/*! \brief     Retrieves all paths that was saved to settings earlier
 		\return    QT_NAMESPACE::QStringList - Containing all strings to bundle-directories

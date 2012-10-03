@@ -37,6 +37,8 @@ public:
 		if( m_Instance )
 		{
 			delete m_Instance;
+			m_Instance = nullptr;
+			m_Guard.m_Charge = nullptr;
 		}
 	}
 
@@ -65,7 +67,7 @@ private:
 	{
 	public:
 		Guard() : m_Charge( nullptr ) {}
-		~Guard(){ if( m_Charge) { m_Charge->Uninitialize(); delete m_Charge; } }
+		~Guard(){ if( m_Charge) { m_Charge->Uninitialize(); delete m_Charge; m_Charge = nullptr; } }
 
 		TypePtr						m_Charge;
 	};

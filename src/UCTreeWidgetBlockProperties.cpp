@@ -1,5 +1,6 @@
 #include "UCTreeWidgetBlockProperties.h"
 #include "UCBlockModel.h"
+#include "UCManagerBlockProperties.h"
 
 
 
@@ -13,25 +14,17 @@ UCTreeWidgetBlockProperties::UCTreeWidgetBlockProperties(void)
 	setItemsExpandable( false );
 	setExpandsOnDoubleClick( false );
 	setTabKeyNavigation( true );
+
+	connect( this, SIGNAL( NotifyBlockPropertiesClicked( UCTreeWidgetBlockProperties* ) ),
+			 &UCManagerBlockProperties::GetInstance(),
+			 SLOT( OnBlockPropertiesClicked( UCTreeWidgetBlockProperties* ) ) );
 }
 
 
-UCTreeWidgetBlockProperties::~UCTreeWidgetBlockProperties(void)
+void Uber::UCTreeWidgetBlockProperties::mousePressEvent( QMouseEvent *widget )
 {
-
+	emit NotifyBlockPropertiesClicked( this );
+	QTreeView::mousePressEvent( widget );
 }
 
-void UCTreeWidgetBlockProperties::Initialize()
-{
-	
-}
 
-void UCTreeWidgetBlockProperties::Uninitialize()
-{
-	
-}
-
-void Uber::UCTreeWidgetBlockProperties::OnBlockSelected( UCBlockModel* model )
-{
-	setModel( model );
-}

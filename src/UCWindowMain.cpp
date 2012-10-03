@@ -19,9 +19,13 @@
 #include "UCTreeWidgetBundles.h"
 #include "UCSceneView.h"
 #include "UCTreeWidgetBlockProperties.h"
+#include "UCManagerBlockProperties.h"
+
 
 
 using namespace Uber;
+
+
 
 
 UCWindowMain::UCWindowMain(void)
@@ -34,22 +38,34 @@ UCWindowMain::UCWindowMain(void)
 	// insert tree widget at the dock
 	m_UIWindow->dockLLayout->addWidget( new UCTreeWidgetBundles( this ) );
 
+	// setup scene view -> drag and drop actions of blocks/nodes
 	UCSceneView& sceneView = UCSceneView::GetInstance();
 	sceneView.SetRootGraphicsView( m_UIWindow->sceneView );
 	m_UIWindow->sceneView->setScene( &sceneView );
 
-	m_UIWindow->dockRLayout->addWidget( &UCTreeWidgetBlockProperties::GetInstance() );
 	// Connect UI-actions to this class slots
 	ConnectActions();
 
 	// connect to view to detect changes
 	//connect( //view to draw?!, SIGNAL( contentsChanged() ) ), this, SLOT(DocumentModified() ) );
+	
+	// finally load all bundles found in settings saved directories
 	UCManagerBundles::GetInstance().LoadBundles();
+}
+
+void Uber::UCWindowMain::Initialize()
+{
+
+}
+
+void Uber::UCWindowMain::Uninitialize()
+{
+	m_UIWindow->sceneView->setScene( nullptr );
 }
 
 UCWindowMain::~UCWindowMain(void)
 {
-
+	
 }
 
 void Uber::UCWindowMain::OnNewScene()

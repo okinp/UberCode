@@ -14,25 +14,19 @@ class UCBlockModel;
 * It shows all properties (inlet/outlet) and their values
 * Values of Inlet-Properties can be changed in here
 */
-class UCTreeWidgetBlockProperties : public QTreeView, public UCSingleton<UCTreeWidgetBlockProperties>
+class UCTreeWidgetBlockProperties : public QTreeView
 {
 	Q_OBJECT
-private:
-	// declare ctors/cpyctor/operator= because use of macro UCSINGLETON -> costum ctor
-	UCTreeWidgetBlockProperties( void );
-	UCTreeWidgetBlockProperties( const UCTreeWidgetBlockProperties& obj );
-	~UCTreeWidgetBlockProperties(void);
-	UCTreeWidgetBlockProperties& operator=( const UCTreeWidgetBlockProperties& o );
 
-	virtual void			Initialize();
-	virtual void			Uninitialize();
+public:
+	UCTreeWidgetBlockProperties();
 
-public slots:
+	virtual void				mousePressEvent( QMouseEvent * );
 
-	/*! \brief		Slot that sets new data model to this view, Called from UCBlock::Ctor && UCBlock::mousePressEvent
-		\param		model - to set on this tree view
-	*/
-	void					OnBlockSelected( UCBlockModel* model );
+signals:
+	void						NotifyBlockPropertiesClicked( UCTreeWidgetBlockProperties* widget );
+
+
 
 private:
 	friend class UCSingleton<UCTreeWidgetBlockProperties>;

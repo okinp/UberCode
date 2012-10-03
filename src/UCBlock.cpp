@@ -4,6 +4,7 @@
 #include "UCTreeWidgetBlockProperties.h"
 #include "UCNodeInlet.h"
 #include "UCNodeOutlet.h"
+#include "UCManagerBlockProperties.h"
 
 
 using namespace Uber;
@@ -22,7 +23,9 @@ Uber::UCBlock::UCBlock( const QString& bundleName, const QString& blockName )
 
 	// properties-widget should display inlets/outlets on selected graphics object
 	connect( this, SIGNAL( NotifyBlockSelected( UCBlockModel* ) ),
-			 &UCTreeWidgetBlockProperties::GetInstance(), SLOT( OnBlockSelected( UCBlockModel* ) ) );
+			 &UCManagerBlockProperties::GetInstance(), SLOT( OnBlockSelected( UCBlockModel* ) ) );
+	connect( this, SIGNAL( NotifyBlockDoubleClicked( UCBlockModel* ) ),
+		&UCManagerBlockProperties::GetInstance(), SLOT( OnBlockDoubleClicked( UCBlockModel* ) ) );
 
 	emit NotifyBlockSelected( &m_Model );
 
@@ -77,6 +80,13 @@ void Uber::UCBlock::mousePressEvent( QGraphicsSceneMouseEvent *event )
 {
 	emit NotifyBlockSelected( &m_Model );
 	QGraphicsObject::mousePressEvent( event );
+}
+
+void Uber::UCBlock::mouseDoubleClickEvent( QGraphicsSceneMouseEvent *event )
+
+{
+	emit NotifyBlockDoubleClicked( &m_Model );
+	QGraphicsObject::mouseDoubleClickEvent( event );
 }
 
 NodeContainer& Uber::UCBlock::GetNodesInlet() const

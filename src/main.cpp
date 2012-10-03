@@ -15,8 +15,10 @@ int main(int argc, char *argv[])
 	app.setOrganizationName( "CADET" );
 	app.setApplicationName( "UberCode" );
 
-	Uber::UCWindowMain window;
+	Uber::UCWindowMain& window = Uber::UCWindowMain::GetInstance();
 	window.show();
 	// starting qt-window logic
-	return app.exec();
+	app.exec();
+	window.Release(); //Releasing object before QT can -> otherwise crash (cause: mainwindow as singleton)
+	return 0;
 };

@@ -36,10 +36,10 @@ class UCManagerBundles : public QObject, public UCSingleton<UCManagerBundles>
 	typedef QString								BundleName;
 	typedef std::map<BundleName, BundleInfo>	BlockContainer; 	/*!< std::map containing all bundles hashed by bundleName */
 
-public:
-
 	virtual void				Initialize();
 	virtual void				Uninitialize();
+public:
+
 
 	/*! \brief		Loads Bundles from paths delivered by UCManagerSettings */
 	void						LoadBundles();

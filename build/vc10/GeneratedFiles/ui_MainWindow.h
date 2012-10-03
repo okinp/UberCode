@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'MainWindow.ui'
 **
-** Created: Tue 2. Oct 10:57:19 2012
+** Created: Wed 3. Oct 21:29:31 2012
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -51,16 +51,12 @@ public:
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *dockLLayout;
     QPushButton *btn_dockRefreshBundles;
-    QDockWidget *dockR;
-    QWidget *dockWidgetContentsR;
-    QHBoxLayout *horizontalLayout_4;
-    QVBoxLayout *dockRLayout;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(940, 742);
+        MainWindow->resize(1030, 742);
         MainWindow->setStyleSheet(QString::fromUtf8(""));
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
@@ -101,7 +97,7 @@ public:
         MainWindow->setCentralWidget(sceneWidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 940, 21));
+        menubar->setGeometry(QRect(0, 0, 1030, 21));
         menuFile = new QMenu(menubar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuHelp = new QMenu(menubar);
@@ -146,32 +142,6 @@ public:
 
         dockL->setWidget(dockWidgetContentsL);
         MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(1), dockL);
-        dockR = new QDockWidget(MainWindow);
-        dockR->setObjectName(QString::fromUtf8("dockR"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(dockR->sizePolicy().hasHeightForWidth());
-        dockR->setSizePolicy(sizePolicy1);
-        dockR->setMinimumSize(QSize(80, 97));
-        dockR->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
-        dockWidgetContentsR = new QWidget();
-        dockWidgetContentsR->setObjectName(QString::fromUtf8("dockWidgetContentsR"));
-        sizePolicy1.setHeightForWidth(dockWidgetContentsR->sizePolicy().hasHeightForWidth());
-        dockWidgetContentsR->setSizePolicy(sizePolicy1);
-        horizontalLayout_4 = new QHBoxLayout(dockWidgetContentsR);
-        horizontalLayout_4->setSpacing(3);
-        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        dockRLayout = new QVBoxLayout();
-        dockRLayout->setSpacing(0);
-        dockRLayout->setObjectName(QString::fromUtf8("dockRLayout"));
-
-        horizontalLayout_4->addLayout(dockRLayout);
-
-        dockR->setWidget(dockWidgetContentsR);
-        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(2), dockR);
-        dockR->raise();
 
         menubar->addAction(menuFile->menuAction());
         menubar->addAction(menuView->menuAction());

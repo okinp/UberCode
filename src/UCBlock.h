@@ -30,9 +30,12 @@ public:
 
 signals:
 	void							NotifyBlockSelected( UCBlockModel* model );
+	void							NotifyBlockDoubleClicked( UCBlockModel* model );
 
 protected:
 	virtual void					mousePressEvent( QGraphicsSceneMouseEvent *event );
+
+	virtual void					mouseDoubleClickEvent( QGraphicsSceneMouseEvent *event );
 
 private:
 	UCBlockModel					m_Model;
